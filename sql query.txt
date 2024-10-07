@@ -1,0 +1,109 @@
+-- 8. Find total sale for each of the sales person from orders
+SELECT EmpID, SUM(Amount) AS TotalSales
+FROM Orders
+GROUP BY EmpID;
+
+-- 9. Find Max sales for each of sales person having max sales is greater than 7000
+SELECT EmpID, MAX(Amount) AS MaxSales
+FROM Orders
+GROUP BY EmpID
+HAVING MAX(Amount) > 7000;
+
+-- 10. Find number of customers for each city
+SELECT City, COUNT(*) AS CustomerCount
+FROM Customer
+GROUP BY City;
+
+-- 11. Find all the employees whose name starts with 'S' or id > 102
+SELECT *
+FROM Employee
+WHERE Name LIKE 'S%' OR EmpID > 102;
+
+-- 12. Find CusID, Name, City, and Phone for CusID between 101 and 104 and City contains 'K'
+SELECT CusID, Name, City, Phone
+FROM Customer
+WHERE CusID BETWEEN 101 AND 104 AND City LIKE '%K%';
+
+-- 13. Find all the orders with order dates containing 'J'
+SELECT *
+FROM Orders
+WHERE OrderDate LIKE '%J%';
+
+-- 14. Find all the customers who have no orders
+SELECT *
+FROM Customer
+WHERE CusID NOT IN (SELECT CusID FROM Orders);
+
+-- 15. Find all the employees who have no sales
+SELECT *
+FROM Employee
+WHERE EmpID NOT IN (SELECT EmpID FROM Orders);
+
+-- 16. Display all the information from Employee, Customer, and Orders table with a left join
+SELECT *
+FROM Orders
+LEFT JOIN Employee ON Orders.EmpID = Employee.EmpID
+LEFT JOIN Customer ON Orders.CusID = Customer.CusID;
+
+-- 17. Display OrderNum, CusID, Amount from Orders for all the customers in Customer table with Name, City, and Phone (right join)
+SELECT OrderNum, Orders.CusID, Amount, Name, City, Phone
+FROM Orders
+RIGHT JOIN Customer ON Orders.CusID = Customer.CusID;
+
+-- 18. Find ID, Name, and Title from Employee table and OrderNum and Amount from Orders for all the employees with orders
+SELECT Employee.EmpID, Employee.Name, Employee.Title, Orders.OrderNum, Orders.Amount
+FROM Employee
+JOIN Orders ON Employee.EmpID = Orders.EmpID;
+
+-- 19. Find all info of customers with more than 1 order
+SELECT Customer.*
+FROM Customer
+JOIN Orders ON Customer.CusID = Orders.CusID
+GROUP BY Customer.CusID
+HAVING COUNT(Orders.OrderNum) > 1;
+
+-- 20. Name of the manager for each employee
+SELECT e1.EmpID, e1.Name AS EmployeeName, e2.Name AS ManagerName
+FROM Employee e1
+LEFT JOIN Employee e2 ON e1.ManagerID = e2.EmpID;
+
+-- 21. Identify manager who has no employee under them
+SELECT e1.EmpID, e1.Name
+FROM Employee e1
+LEFT JOIN Employee e2 ON e1.EmpID = e2.ManagerID
+WHERE e2.EmpID IS NULL AND e1.Title LIKE '%Manager%';
+
+-- 22. In Orders table update ID = 101 for OrderNum 1001, ID = 104 for OrderNum 1004, ID = 101 for OrderNum 1005, and ID = 102 for OrderNum 1007
+UPDATE Orders SET CusID = 101 WHERE OrderNum = 1001;
+UPDATE Orders SET CusID = 104 WHERE OrderNum = 1004;
+UPDATE Orders SET CusID = 101 WHERE OrderNum = 1005;
+UPDATE Orders SET CusID = 102 WHERE OrderNum = 1007;
+
+-- 23. Display all the information from Employee, Customer, and Orders table with a left join
+SELECT *
+FROM Orders
+LEFT JOIN Employee ON Orders.EmpID = Employee.EmpID
+LEFT JOIN Customer ON Orders.CusID = Customer.CusID;
+
+-- 24. Display OrderNum, CusID, Amount from Orders for all the customers in Customer table with Name, City, and Phone (right join)
+SELECT OrderNum, Orders.CusID, Amount, Name, City, Phone
+FROM Orders
+RIGHT JOIN Customer ON Orders.CusID = Customer.CusID;
+
+-- 25. Find ID, Name, and Title from Employee table and OrderNum and Amount from Orders for all the employees with orders
+SELECT Employee.EmpID, Employee.Name, Employee.Title, Orders.OrderNum, Orders.Amount
+FROM Employee
+JOIN Orders ON Employee.EmpID = Orders.EmpID;
+
+-- 26. Find all info of customers with more than 1 order
+SELECT Customer.*
+FROM Customer
+JOIN Orders ON Customer.CusID = Orders.CusID
+GROUP BY Customer.CusID
+HAVING COUNT(Orders.OrderNum) > 1;
+
+-- 27. Total orders for each of the customers with total more than 7000
+SELECT CusID, SUM(Amount) AS TotalAmount
+FROM Orders
+GROUP BY CusID
+HAVING SUM(Amount) > 7000;

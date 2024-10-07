@@ -1,0 +1,73 @@
+﻿SQL Homework 3 - 
+1. Create database Sales
+2. Create a table  Employee
+EmpID int 
+Name varchar (50) 
+Title varchar (50) 
+ManagerID  int 
+Salary int 
+3. Insert rows into Employee
+
+EmpID = 101, Name = Robert Jones,  Title = Sales Person, ManagerID =  102,  Salary = 55000
+EmpID = 102, Name = Liz Farnandez,  Title = Sales Manager, ManagerID =  106,    Salary = 70000
+EmpID = 103, Name = Mathew Richards,  Title = Sales Person, ManagerID =  102    Salary = 57500
+EmpID = 104, Name = Ethan Lubatkin,  Title = Sales Person, ManagerID =  105, Salary = 48600
+EmpID = 105 , Name = Stuart Little, Title = Store Manager,  Salary = 49000
+EmpID = 106 , Name = Samantha Porter, Title = Manager, Salary = 49000
+
+4. Create a table  Customer 
+
+CusID int 
+Name varchar (50)
+City varchar (20) 
+Phone  varchar (20) 
+
+5. Insert into Customer
+CusId = 101, Name = Aim Tek, City = New York, Phone = 111-111-1111
+CusId = 102, Name = Compu 21, City = Wilmington, Phone = 333-777- 6666
+CusId = 103, Name = Spinning Wheel, City = Chicago, Phone = 453-674-3066
+CusId = 104, Name = New Horizon, City = New York, Phone = 181-666-7779
+CusId = 105, Name = QA Connect, City = Los Angeles, Phone = 865-788-8889
+CusId = 106, Name = Learning Tree, City = New York, Phone = 899-777-8096
+CusId = 107, Name = Knowledge Box, City = Chicago, Phone = 899-777-8096
+
+6. Create a table Orders 
+OrderNum  int 
+OrdeDate varrchar (13) 
+CusID int 
+EmpID  int 
+Amount int 
+
+7. Insert into Orders 
+Ordernum = 1001, OrderDate = 30-JUN-2012, CusId = 101, EmpID= 103, Amount = 5600
+Ordernum = 1002, OrderDate = 30-JAN-2013, CusId = 103, EmpID= 102, Amount = 6000
+Ordernum = 1003, OrderDate = 30-AUG-2012, CusId = 103, EmpID= 103, Amount = 9000
+Ordernum = 1004, OrderDate = 30-MAR-2002, CusId = 104, EmpID= 101, Amount = 8090
+Ordernum = 1005, OrderDate = 30-JUN-2000, CusId = 101, EmpID= 103, Amount = 9087
+Ordernum = 1006, OrderDate = 30-DEC-2002, CusId = 103, EmpID= 104, Amount = 8400
+Ordernum = 1007, OrderDate = 30-JUN-2013, CusId = 101, EmpID= 101, Amount = 3459
+Ordernum = 1008, OrderDate = 30-JUL-2014, CusId = 104, EmpID= 103, Amount = 0977
+
+
+8. Find total sale for each of the sales person from orders  - hint join 
+9. Find Max sales for each of sales person having max sales  is greater than 7000
+10. Find number of customer for each city 
+11. Find all the employee who’s name starts with s, or id > 102
+12. Find cusid, Name, City and phone  cusid  between 101 and 104 and clity contains K
+13. Find all the orders with order dates contains J
+14. Find all the customers who has no order
+15. Find all the employee who has no sale 
+16. Please display all the information from employee, customer and Orders table with a left join 
+17. Display ordernum, cusid, amount from Orders for all the customers in customers table with Name, City and Phone (hint – right join) 
+18. Find id, name and title from Employee table and Ordernum and Amount from orders for all the employees with orders 
+19. Find all info of customers with more than 1 order
+20. name of the manager for each the  employee
+21. identify manager who has no employee under them 
+22. In Orders table update id = 101 for orderNum 1001, Id = 104  for OrderNum 1004, id = 101 for orderNum 1005 and id = 102 for orderNum 1007
+23. Please display all the information from employee, customer and Orders table with a left join 
+24. Display ordernum, cusid, amount from Orders for all the customers in customers table with Name, City and Phone (hint – right join) 
+25. Find id, name and title from Employee table and Ordernum and Amount from orders for all the employees with orders 
+26. Find all info of customers with an more than 1 order
+27. Total orders for each of the customers with total more than 7000
+
+
