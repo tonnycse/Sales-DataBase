@@ -8,13 +8,13 @@ The Sales Database project includes:
 
 **Database Creation:** Created a Sales database.
 
-**Tables Created:**
+**Tables Created:** 
 
-**Employee:** Stores employee details, such as ID, name, title, manager, and salary.
+**1. Employee:** Stores employee details, such as ID, name, title, manager, and salary.
 
-**Customer:** Stores customer information, such as ID, name, city, and phone number.
+**2. Customer:** Stores customer information, such as ID, name, city, and phone number.
 
-**Orders:** Records order transactions with order ID, date, customer ID, employee ID, and amount.
+**3. Orders:** Records order transactions with order ID, date, customer ID, employee ID, and amount.
 
 **Tasks Performed:**
 
