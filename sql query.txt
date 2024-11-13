@@ -27,7 +27,7 @@ WHERE CusID BETWEEN 101 AND 104 AND City LIKE '%K%';
 -- 13. Find all the orders with order dates containing 'J'
 SELECT *
 FROM Orders
-WHERE OrderDate LIKE '%J%';
+WHERE OrdeDate LIKE '%J%';
 
 -- 14. Find all the customers who have no orders
 SELECT *
@@ -40,10 +40,16 @@ FROM Employee
 WHERE EmpID NOT IN (SELECT EmpID FROM Orders);
 
 -- 16. Display all the information from Employee, Customer, and Orders table with a left join
-SELECT *
-FROM Orders
-LEFT JOIN Employee ON Orders.EmpID = Employee.EmpID
-LEFT JOIN Customer ON Orders.CusID = Customer.CusID;
+SELECT 
+    e.EmpID, e.Name AS EmployeeName, e.Title, e.ManagerID, e.Salary,
+    c.CusID, c.Name AS CustomerName, c.City, c.Phone,
+    o.OrderNum, o.OrdeDate, o.Amount
+FROM 
+    Employee e
+LEFT JOIN 
+    Orders o ON e.EmpID = o.EmpID
+LEFT JOIN 
+    Customer c ON o.CusID = c.CusID;
 
 -- 17. Display OrderNum, CusID, Amount from Orders for all the customers in Customer table with Name, City, and Phone (right join)
 SELECT OrderNum, Orders.CusID, Amount, Name, City, Phone
