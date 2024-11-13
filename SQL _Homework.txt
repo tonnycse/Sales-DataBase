@@ -64,10 +64,6 @@ Ordernum = 1008, OrderDate = 30-JUL-2014, CusId = 104, EmpID= 103, Amount = 0977
 20. name of the manager for each the  employee
 21. identify manager who has no employee under them 
 22. In Orders table update id = 101 for orderNum 1001, Id = 104  for OrderNum 1004, id = 101 for orderNum 1005 and id = 102 for orderNum 1007
-23. Please display all the information from employee, customer and Orders table with a left join 
-24. Display ordernum, cusid, amount from Orders for all the customers in customers table with Name, City and Phone (hint – right join) 
-25. Find id, name and title from Employee table and Ordernum and Amount from orders for all the employees with orders 
-26. Find all info of customers with an more than 1 order
-27. Total orders for each of the customers with total more than 7000
+23. Total orders for each of the customers with total more than 7000
 
 
