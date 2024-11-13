@@ -1,0 +1,87 @@
+TC ID,Title/ Description,Steps,Expected Result,Actual Result,Test Data,Priority,Status
+TC08,Verify total sales for each salesperson from orders.,"SELECT EmpID, SUM(Amount) AS TotalSales
+FROM Orders
+GROUP BY EmpID;","1. EmpID: 101, Total Sales: 11,549,   
+2. EmpID: 102, Total Sales: 6,000,
+3. EmpID: 103, Total Sales: 24,664,
+4. EmpID: 104, Total Sales: 8,400",As Expected,NA,P1,Passed
+TC09,Verify max sales for each salesperson with max sales greater than 7000.,"SELECT EmpID, MAX(Amount) AS MaxSales
+FROM Orders
+GROUP BY EmpID
+HAVING MAX(Amount) > 7000;","1. EmpID: 101, MaxSales: 8090,   
+2. EmpID: 103, Total Sales: 9087,
+3. EmpID: 104, Total Sales: 8400
+",As Expected,NA,P1,Passed
+TC10,Verify the number of customers for each city.,"SELECT City, COUNT(*) AS CustomerCount
+FROM Customer
+GROUP BY City;","1. City: Chicago, CustomerCount: 2,   
+2. City: Los Angeles, CustomerCount: 1,
+3. City: New York, CustomerCount: 3,
+4. City: Wilmington, CustomerCount: 1",As Expected,NA,P1,Passed
+TC11,Verify employees whose name starts with 'S' or ID > 102.,"SELECT *
+FROM Employee
+WHERE Name LIKE 'S%' OR EmpID > 102;","1. EmpID: 103, Name: Mathew Richards,   
+2. EmpID: 104 , Name: Ethan Lubatkin,
+3. EmpID: 105 , Name: Stuart Little,
+4. EmpID: 106 , Name: Samantha Porter",As Expected,NA,P1,Passed
+TC12,"Verify customers with CusID between 101 and 104, Name, City containing 'K' and Phone Numbers.","SELECT CusID, Name, City, Phone
+FROM Customer
+WHERE CusID BETWEEN 101 AND 104 AND City LIKE '%K%';","1. CusID: 101, Name: Aim Tek, City: New York, Phone: 111-111-1111   
+2. CusID: 104, Name: New Horizon, City: New York, Phone: 181-666-7779",As Expected,NA,P1,Passed
+TC13,Verify orders with order dates containing 'J'.,"SELECT *
+FROM Orders
+WHERE OrdeDate LIKE '%J%';","30-JUN-2012, 30-JAN-2013, 30-JUN-2000, 30-JUN-2013, 30-JUL-2014",As Expected,NA,P1,Passed
+TC14,Verify all customers who have no orders.,"SELECT *
+FROM Customer
+WHERE CusID NOT IN (SELECT CusID FROM Orders);","CusID: 102, 105, 106, 107",As Expected,NA,P1,Passed
+TC15,Verify all employees who have no sales.,"SELECT *
+FROM Employee
+WHERE EmpID NOT IN (SELECT EmpID FROM Orders);","EmpID: 105, 106",As Expected,NA,P1,Passed
+TC16,"Display all information from Employee, Customer, and Orders tables with a left join.","SELECT 
+    e.EmpID, e.Name AS EmployeeName, e.Title, e.ManagerID, e.Salary,
+    c.CusID, c.Name AS CustomerName, c.City, c.Phone,
+    o.OrderNum, o.OrdeDate, o.Amount
+FROM 
+    Employee e
+LEFT JOIN 
+    Orders o ON e.EmpID = o.EmpID
+LEFT JOIN 
+    Customer c ON o.CusID = c.CusID;","EmpID, EmployeeName, Title, ManagerID, Salary, CusID, CustomerName, City, Phone, OrderNum, OrderDate, Amount columns will be displayed",As Expected,NA,P1,Passed
+TC17,"Display OrderNum, CusID, Amount from Orders for all customers with Name, City, and Phone (Right Join).","SELECT OrderNum, Orders.CusID, Amount, Name, City, Phone
+FROM Orders
+RIGHT JOIN Customer ON Orders.CusID = Customer.CusID;","OrderNum, CusID, Amount, Name, City, Phone columns will be displayed.",As Expected,NA,P1,Passed
+TC18,Verify Employee details and Order details for all employees with orders.,"SELECT Employee.EmpID, Employee.Name, Employee.Title, Orders.OrderNum, Orders.Amount
+FROM Employee
+JOIN Orders ON Employee.EmpID = Orders.EmpID;","EmpID, Name, Title, OrderNum, Amount columns will be displayed.",As Expected,NA,P1,Passed
+TC19,Verify all information of customers with more than one order.,"SELECT Customer.*
+FROM Customer
+JOIN Orders ON Customer.CusID = Orders.CusID
+GROUP BY Customer.CusID
+HAVING COUNT(Orders.OrderNum) > 1;","1. CusID: 101, Name: Aim Tek, City: New York, Phone: 111-111-1111   
+2. CusID: 103, Name: Spinning Wheel, City: Chicago, Phone: 453-674-3066
+3. CusID: 104, Name: New Horizon, City: New York, Phone: 181-666-7779   ",As Expected,NA,P1,Passed
+TC20,Verify the name of the manager for each employee.,"SELECT e1.EmpID, e1.Name AS EmployeeName, e2.Name AS ManagerName
+FROM Employee e1
+LEFT JOIN Employee e2 ON e1.ManagerID = e2.EmpID;","1. EmpID: 101, ManagerName: Liz Farnandez,   
+2. EmpID: 103 , ManagerName: Liz Farnandez,
+3. EmpID: 104 , ManagerName: Stuart Little,
+4. EmpID: 102 , ManagerName: Samantha Porter,
+5. EmpID: 105 , ManagerName: NULL,
+6. EmpID: 106 , ManagerName: NULL",As Expected,NA,P1,Passed
+TC21,Identify managers who have no employees under them.,"SELECT e1.EmpID, e1.Name
+FROM Employee e1
+LEFT JOIN Employee e2 ON e1.EmpID = e2.ManagerID
+WHERE e2.EmpID IS NULL AND e1.Title LIKE '%Manager%';",There is no manager without employee,As Expected,NA,P1,Passed
+TC22,Update EmpID for specific OrderNum values in Orders table.,"UPDATE Orders SET CusID = 101 WHERE OrderNum = 1001;
+UPDATE Orders SET CusID = 104 WHERE OrderNum = 1004;
+UPDATE Orders SET CusID = 101 WHERE OrderNum = 1005;
+UPDATE Orders SET CusID = 102 WHERE OrderNum = 1007;","1. OrderNum 1001: CusID changed to 101.
+2. OrderNum 1004: CusID changed to 104.
+3. OrderNum 1005: CusID changed to 101.
+4. OrderNum 1007: CusID changed to 102.",As Expected,NA,P1,Passed
+TC23,Retrieve total orders for each customer with a total amount exceeding 7000.,"SELECT CusID, SUM(Amount) AS TotalAmount
+FROM Orders
+GROUP BY CusID
+HAVING SUM(Amount) > 7000;","1. CusID: 101, TotalAmount: 14687,   
+2. CusID: 103, TotalAmount: 23400,
+3. CusID: 104, TotalAmount: 9067",As Expected,NA,P1,Passed
