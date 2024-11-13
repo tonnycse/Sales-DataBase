@@ -85,30 +85,7 @@ UPDATE Orders SET CusID = 104 WHERE OrderNum = 1004;
 UPDATE Orders SET CusID = 101 WHERE OrderNum = 1005;
 UPDATE Orders SET CusID = 102 WHERE OrderNum = 1007;
 
--- 23. Display all the information from Employee, Customer, and Orders table with a left join
-SELECT *
-FROM Orders
-LEFT JOIN Employee ON Orders.EmpID = Employee.EmpID
-LEFT JOIN Customer ON Orders.CusID = Customer.CusID;
-
--- 24. Display OrderNum, CusID, Amount from Orders for all the customers in Customer table with Name, City, and Phone (right join)
-SELECT OrderNum, Orders.CusID, Amount, Name, City, Phone
-FROM Orders
-RIGHT JOIN Customer ON Orders.CusID = Customer.CusID;
-
--- 25. Find ID, Name, and Title from Employee table and OrderNum and Amount from Orders for all the employees with orders
-SELECT Employee.EmpID, Employee.Name, Employee.Title, Orders.OrderNum, Orders.Amount
-FROM Employee
-JOIN Orders ON Employee.EmpID = Orders.EmpID;
-
--- 26. Find all info of customers with more than 1 order
-SELECT Customer.*
-FROM Customer
-JOIN Orders ON Customer.CusID = Orders.CusID
-GROUP BY Customer.CusID
-HAVING COUNT(Orders.OrderNum) > 1;
-
--- 27. Total orders for each of the customers with total more than 7000
+-- 23. Total orders for each of the customers with total more than 7000
 SELECT CusID, SUM(Amount) AS TotalAmount
 FROM Orders
 GROUP BY CusID
